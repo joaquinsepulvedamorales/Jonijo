@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <title>Inicio - Jonijo</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <style>
+      .custom-marquee {
+        position: relative;
+        top: 50px; 
+      }
+  
+      .custom-marquee p {
+        white-space: nowrap; 
+      }
+
+      .navbar-brand {
+        display: flex;
+        align-items: center;
+        font-size: 36px; 
+      }
+
+      .navbar-brand img {
+        margin-right: 10px; 
+      }
+
+      .navbar-nav .nav-link {
+        font-size: 18px; 
+      }
+
+      .footer {
+        background-color: #343a40;
+        color: white;
+        padding: 20px 0;
+        width: 100%;
+        margin-top: 50px;
+      }
+
+      .newsletter-form {
+        max-width: 400px;
+        margin: 0 auto;
+      }
+
+      .form-control,
+      .btn {
+        margin-top: 10px;
+      }
+
+      .footer h3 {
+        margin-bottom: 0; 
+      }
+
+      .offer-card {
+        margin-top: 20px;
+      }
+
+      /* Nuevos estilos para la sección de productos */
+      .product-section {
+        margin-top: 50px;
+      }
+
+      .product-card {
+        margin-bottom: 20px;
+      }
+
+      .product-card img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      .product-card h5 {
+        margin-top: 10px;
+      }
+
+      /* Estilos para la sección "Próximamente" */
+      .coming-soon {
+        background-color: #f8f9fa;
+        padding: 50px 0;
+      }
+
+      .coming-soon h2 {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .coming-soon ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .coming-soon ul li {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+
+      .newsletter-section {
+        background-color: #f8f9fa;
+        padding: 50px 0;
+        text-align: center;
+      }
+
+      .newsletter-section input {
+        width: 70%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        margin-right: 10px;
+      }
+
+      .newsletter-section button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: #ffffff;
+      }
+
+      /* Estilos para la nueva sección de información */
+      .about-section {
+        background-color: #f8f9fa;
+        padding: 50px 0;
+        text-align: justify;
+      }
+
+      .objectives-section {
+        background-color: #f8f9fa;
+        padding: 50px 0;
+        text-align: center;
+      }
+
+      .objectives-section h2 {
+        margin-bottom: 30px;
+      }
+
+      .objectives-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .objectives-list li {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+    </style>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="inicio.html">
+                <img src="../img/icono.png" alt="Icono" height="50">
+                Jonijo
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="carro.html">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contacto.html">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="carro.html">Carrito</a>
+                    </li>
+                </ul>
+                <!-- Agregada barra de búsqueda en la barra de navegación -->
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Buscar</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>
+  <main>
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <!-- Se eliminó el botón para la oferta 1 -->
+      </div>
+      <div class="carousel-inner">
+        <!-- Se eliminó la primera oferta del carrusel -->
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    <marquee  class="custom-marquee" behavior="scroll" direction="left" scrollamount="10">
+      <h2 style="font-size: 42px; color: #333; margin-bottom: 60px;">Bienvenido a Jonijo, tu botillería de confianza en Concepción. Descubre las mejores ofertas en bebidas alcohólicas.</h2>
+    </marquee>
+
+    <!-- Nueva sección de información -->
+    <div class="container about-section">
+        <p>Gracias a la preferencia de todos sus clientes, ya con el nombre KAMADI instaurado, se hizo inminente la apertura de otra sucursal, consolidando a la empresa como líder del rubro en la región. Luego de otros tantos años, con el crecimiento orgánico de la ciudad, también se vio en la necesidad de crecer, esta vez descentralizándose y abriendo dos nuevas sucursales con más espacio y estacionamientos; una en dirección norte de Concepción, salida hacia la comuna de Penco y la otra en la comuna de San Pedro de la Paz.</p>
+  
+        <p>Y es tan sólo hasta el año 2012, a raíz de la gran cantidad de ex-clientes que se encontraban viviendo en Santiago y manifestaban su nostalgia, que se decidió abrir una quinta sucursal en la capital, motivo que dio origen al actual KAMADI existente en la comuna de Vitacura. Donde hasta el día de hoy ha tenido una excelente recepción tanto por antiguos clientes penquistas, como por nuevos ganados día a día a través de precios competentes y una gran gama de productos, desde los más populares hasta los más exclusivos disponibles en el mercado nacional.</p>
+    </div>
+
+    <!-- Sección de productos -->
+    <div class="container product-section">
+        <div class="row">
+            <div class="col-md-3 product-card">
+                <div class="card">
+                    <img src="../img/ofertainicio2.jpg" class="card-img-top" alt="Oferta 2">
+                    <div class="card-body">
+                        <h5 class="card-title">PROMO 1 TEQUILA EL MERENDERO BLANCO 38G 1LT + 1 VODKA ERISTOFF 37.5º 1LT</h5>
+                        <p class="card-text">$9.990</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 product-card">
+                <div class="card">
+                    <img src="../img/ofertainicio3.jpg" class="card-img-top" alt="Oferta 3">
+                    <div class="card-body">
+                        <h5 class="card-title">PROMO 6 VINO DONA DOMINGA CLASICO DE FAMILIA750CC</h5>
+                        <p class="card-text">$12.990</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 product-card">
+                <div class="card">
+                    <img src="../img/ofertainicio4.jpg" class="card-img-top" alt="Oferta 4">
+                    <div class="card-body">
+                        <h5 class="card-title">PROMO 6 CERV SCHOFFERHOFER POMELO LATA 500CC 2.5º</h5>
+                        <p class="card-text">$5.990</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección "Próximamente" -->
+    <div class="container coming-soon">
+      <h2>Próximamente</h2>
+      <ul>
+        <li>INFORMACIONES</li>
+        <li>HORARIOS Y SUCURSALES</li>
+        <li>OFERTAS</li>
+        <li>PRODUCTOS</li>
+        <li>PREGUNTAS FRECUENTES</li>
+      </ul>
+      <div class="newsletter-section">
+        <p>¿Quieres recibir ofertas y novedades en tu email?</p>
+        <input type="email" placeholder="Ingresa tu e-mail">
+        <button class="btn btn-primary">Inscribir</button>
+        <p>Sé el primero en conocer nuestras ofertas, nuestros productos y horarios especiales</p>
+      </div>
+    </div>
+
+    <!-- Sección de pie de página -->
+    <footer class="footer d-flex align-items-center">
+      <div class="container text-center">
+          <h3>Ingresa tu correo para recibir ofertas</h3>
+          <form class="newsletter-form">
+              <div class="input-group mb-3">
+                  <input type="email" class="form-control" id="correo" placeholder="Correo electrónico"
+                      aria-label="Correo electrónico" aria-describedby="button-addon2">
+                  <button class="btn btn-primary" type="button" id="button-addon2" onclick="guardarCorreo()">Suscribirse</button>
+              </div>
+          </form>
+      </div>
+  </footer>
+
+  <!-- Se añadió el script para guardar correo -->
+  <script>
+    function guardarCorreo() {
+        var correo = document.getElementById("correo").value;
+        alert("Correo " + correo + " guardado exitosamente.");
+    }
+  </script>
+
+  <!-- Scripts de Bootstrap y Popper.js -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+      integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          // Variables
+          const baseDeDatos = [
+              {
+                  id: 1,
+                  nombre: 'PROMO 1 WHISKY BUCHANANS 12 AÑOS 40º 750CC',
+                  precio: 24.990,
+                  imagen: '../img/producto1.png'
+              },
+              {
+                  id: 2,
+                  nombre: 'PROMO 1 WHISKY CHIVAS REGAL 12 AÑOS 40º 750CC',
+                  precio: 22.990,
+                  imagen: '../img/producto2.png'
+              },
+              {
+                  id: 3,
+                  nombre: 'PROMO 1 GIN BOMBAY SAPPHIRE 47º 1750CC',
+                  precio: 19.990,
+                  imagen: '../img/producto3.png'
+              },
+              {
+                  id: 4,
+                  nombre: 'PROMO 1 PISCO MISTRAL NOBEL BARRICA TOSTADA 40º 750CC',
+                  precio: 9.590,
+                  imagen: '../img/producto4.png'
+              },
+              {
+                  id: 5,
+                  nombre: 'PROMO 12 CERV AUSTRAL RED LAGER O LOTUS LATA 470CC',
+                  precio: 9.990,
+                  imagen: '../img/producto5.png'
+              },
+              {
+                  id: 6,
+                  nombre: 'PROMO 2 VINO CREMASCHI FURLOTTI EDICION LIMITADA 750CC',
+                  precio: 10.990,
+                  imagen: '../img/producto6.png'
+              },
+              {
+                  id: 7,
+                  nombre: 'PROMO 2 VINO VERAMONTE PRIMUS (CAR/CS/BLEND)750CC',
+                  precio: 1,
+                  imagen: '../img/productov2.png'
+              },
+              {
+                  id: 8,
+                  nombre: 'PROMO 1 RON BACARDI SUPERIOR 37.5º 1.75LT',
+                  precio: 9.590,
+                  imagen: '../img/producto7.png'
+              },
+              {
+                  id: 9,
+                  nombre: 'BOLSA DORITOS 200G',
+                  precio: 1.350,
+                  imagen: '../img/producto8.png'
+              },
+              {
+                  id: 10,
+                  nombre: 'BEBIDA PEPSI 3 LITROS',
+                  precio: 2.920,
+                  imagen: '../img/producto9.png'
+              },
+          ];
+
+          let carrito = [];
+          const divisa ='CLP';
+          const DOMitems = document.querySelector('#items');
+          const DOMcarrito = document.querySelector('#carrito');
+          const DOMtotal = document.querySelector('#total');
+          const DOMbotonVaciar = document.querySelector('#boton-vaciar');
+
+         
+          function renderizarProductos() {
+              baseDeDatos.forEach((info) => {
+                  // Estructura
+                  const miNodo = document.createElement('div');
+                  miNodo.classList.add('card', 'col-sm-4');
+                  // Body
+                  const miNodoCardBody = document.createElement('div');
+                  miNodoCardBody.classList.add('card-body');
+                  // Titulo
+                  const miNodoTitle = document.createElement('h5');
+                  miNodoTitle.classList.add('card-title');
+                  miNodoTitle.textContent = info.nombre;
+                  // Imagen
+                  const miNodoImagen = document.createElement('img');
+                  miNodoImagen.classList.add('img-fluid');
+                  miNodoImagen.setAttribute('src', info.imagen);
+                  // Precio
+                  const miNodoPrecio = document.createElement('p');
+                  miNodoPrecio.classList.add('card-text');
+                  miNodoPrecio.textContent = `${info.precio.toFixed(3)}${divisa}`;
+                  // Boton 
+                  const miNodoBoton = document.createElement('button');
+                  miNodoBoton.classList.add('btn', 'btn-primary');
+                  miNodoBoton.textContent = '+';
+                  miNodoBoton.setAttribute('marcador', info.id);
+                  miNodoBoton.addEventListener('click', anyadirProductoAlCarrito);
+                  // Insertamos
+                  miNodoCardBody.appendChild(miNodoImagen);
+                  miNodoCardBody.appendChild(miNodoTitle);
+                  miNodoCardBody.appendChild(miNodoPrecio);
+                  miNodoCardBody.appendChild(miNodoBoton);
+                  miNodo.appendChild(miNodoCardBody);
+                  DOMitems.appendChild(miNodo);
+              });
+          }
+
+          
+          function anyadirProductoAlCarrito(evento) {
+              carrito.push(evento.target.getAttribute('marcador'))
+              renderizarCarrito();
+
+          }
+
+          
+          function renderizarCarrito() {
+              DOMcarrito.textContent = '';
+              const carritoSinDuplicados = [...new Set(carrito)];
+              carritoSinDuplicados.forEach((item) => {
+                  const miItem = baseDeDatos.filter((itemBaseDatos) => {
+                      return itemBaseDatos.id === parseInt(item);
+                  });
+                  const numeroUnidadesItem = carrito.reduce((total, itemId) => {
+                      return itemId === item ? total += 1 : total;
+                  }, 0);
+                  const miNodo = document.createElement('li');
+                  miNodo.classList.add('list-group-item', 'text-right', 'mx-2');
+                  miNodo.textContent = `${numeroUnidadesItem} x ${miItem[0].nombre} - ${miItem[0].precio}${divisa}`;
+                  const miBoton = document.createElement('button');
+                  miBoton.classList.add('btn', 'btn-danger', 'mx-5');
+                  miBoton.textContent = 'X';
+                  miBoton.style.marginLeft = '1rem';
+                  miBoton.dataset.item = item;
+                  miBoton.addEventListener('click', borrarItemCarrito);
+
+                  miNodo.appendChild(miBoton);
+                  DOMcarrito.appendChild(miNodo);
+              });
+             DOMtotal.textContent = calcularTotal();
+          }
+
+          
+          function borrarItemCarrito(evento) {
+              const id = evento.target.dataset.item;
+
+              carrito = carrito.filter((carritoId) => {
+                  return carritoId !== id;
+              });
+              renderizarCarrito();
+          }
+
+          
+          function calcularTotal() {
+              return carrito.reduce((total, item) => {
+                  const miItem = baseDeDatos.filter((itemBaseDatos) => {
+                      return itemBaseDatos.id === parseInt(item);
+                  });
+                  return total + miItem[0].precio;
+              }, 0).toFixed(3);
+          }
+
+         
+          function vaciarCarrito() {
+              carrito = []
+              renderizarCarrito();
+          }
+
+
+          DOMbotonVaciar.addEventListener('click', vaciarCarrito);
+
+          renderizarProductos();
+          renderizarCarrito();
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <nav class ="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="inicio.html">
+                    <img src="../img/icono.png" alt="Icono" height="50" class="me-2">
+                    Jonijo
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="carro.html">Productos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contacto.html">Contacto</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="carro.html">Carrito</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="row">
+            <!-- Elementos generados a partir del JSON -->
+            <main id="items" class="col-sm-8 row"></main>
+            <!-- Carrito -->
+            <aside class="col-sm-4">
+                <h2>Carrito</h2>
+                <!-- Elementos del carrito -->
+                <ul id="carrito" class="list-group"></ul>
+                <hr>
+                <!-- Precio total -->
+                <p class="text-right">Total: <span id="total"></span>clp</p>
+                <button id="boton-vaciar" class="btn btn-danger">Vaciar</button>
+                <!-- Botón de PayPal -->
+                <div id="smart-button-container">
+                    <div style="text-align: center;">
+                      <div id="paypal-button-container"></div>
+                    </div>
+                  </div>
+                  
+                  <button id="boton-servicio-delivery" class="btn btn-primary">Servicio Delivery</button>
+                    <div id="servicio-delivery" style="display: none;">
+                        <div class="form-group">
+                            <label for="direccion">Dirección de entrega:</label>
+                            <input type="text" class="form-control" id="direccion" placeholder="Ingrese su dirección">
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono">Teléfono de contacto:</label>
+                            <input type="text" class="form-control" id="telefono" placeholder="Ingrese su teléfono">
+                        </div>
+                        <div class="form-group">
+                            <label for="info-adicional">Información adicional:</label>
+                            <textarea class="form-control" id="info-adicional" rows="3" placeholder="Información adicional (opcional)"></textarea>
+                        </div>
+                        <button id="boton-guardar-informacion" class="btn btn-primary" onclick="mostrarInformacionCliente()">Guardar Información</button>
+                    </div>
+                   <script>
+                    function mostrarInformacionCliente() {
+                        // Puedes personalizar esta información según tus necesidades
+                        var informacionCliente = "Registrado correctamente";
+                        alert("Información del cliente:\n\n" + informacionCliente);
+                    } 
+                    </script>
+                  <script src="https://www.paypal.com/sdk/js?client-id=AeYord7sGeOvE-VUFyXCbg0mxn84JRnzFuijEbMSHnKTewO3cdNXogf0bYSiipKe6cSL09s8Ye70iURl&currency=USD" data-sdk-integration-source="button-factory"></script>
+                  <script>
+                    const botonServicioDelivery = document.getElementById('boton-servicio-delivery');
+                    const servicioDelivery = document.getElementById('servicio-delivery');
+
+                    botonServicioDelivery.addEventListener('click', () => {
+                        if (servicioDelivery.style.display === 'none') {
+                            servicioDelivery.style.display = 'block';
+                        } else {
+                            servicioDelivery.style.display = 'none';
+                        }
+                    });
+                    function initPayPalButton() {
+                      paypal.Buttons({
+                        style: {
+                          shape: 'rect',
+                          color: 'gold',
+                          layout: 'vertical',
+                          label: 'pay',
+                        },
+                        createOrder: function(data, actions) {
+                          return actions.order.create({
+                            purchase_units: [{"description":"LA DESCRIPCION DE TU PRODUCTO","amount":{"currency_code":"USD","value":50}}]
+                          });
+                        },
+                        onApprove: function(data, actions) {
+                          return actions.order.capture().then(function(orderData) {
+                            // Full available details
+                            console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+                            actions.redirect('LA URL DE TU PAGINA DE GRACIAS');
+                          });
+                        },
+                        onError: function(err) {
+                          console.log(err);
+                        }
+                      }).render('#paypal-button-container');
+                    }
+                    initPayPalButton();
+                  </script>
+                </script>
+            </aside>
+        </div>
+    </div>
+</body>
+</html>
